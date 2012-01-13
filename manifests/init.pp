@@ -26,7 +26,7 @@
 #   }
 #
 ################################################################################
-class bind ( $lastversion = false ) {
+class bind ( $lastversion = false, $listen = ["127.0.0.1"], $forwarders = ["8.8.8.8","8.8.4.4"] ) {
     # parameters validation
     if ($lastversion != true) and ($lastversion != false) {
         fail("lastversion must be true or false")
