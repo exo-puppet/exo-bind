@@ -17,7 +17,7 @@ options {
 
         <% if ! scope.lookupvar('bind::forwarders').empty? then %>
         forwarders {
-            <% scope.lookupvar('bind::forwarders').each { |i| %> 
+            <% scope.lookupvar('bind::forwarders').flatten().each { |i| %> 
             <%= i + ";"%> 
             <% } %>
         };
