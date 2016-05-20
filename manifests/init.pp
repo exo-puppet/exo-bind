@@ -38,6 +38,6 @@ class bind (
   if ($lastversion != true) and ($lastversion != false) {
     fail('lastversion must be true or false')
   }
-  include repo
+  include stdlib
   include bind::params, bind::install, bind::config, bind::service
 }
