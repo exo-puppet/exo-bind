@@ -1,7 +1,7 @@
 # Class: bind::config
 #
 # This class manages bind configuration
-class bind::config {
+class bind::config ( $bind_options_template ){
   # configure agent daemon/service to start at boot time or not
   case $::operatingsystem {
     /(Ubuntu|Debian)/ : {
@@ -10,7 +10,7 @@ class bind::config {
         owner   => root,
         group   => bind,
         mode    => 0644,
-        content => template('bind/named.conf.options.erb'),
+        content => template("${bind_options_template}"),
         require => Class['bind::install'],
         notify  => Class['bind::service'],
       }
