@@ -31,13 +31,20 @@ class bind (
   $lastversion = false,
   $listen      = [
     '127.0.0.1'],
+  $bind_options_template = [
+    'bind/named.conf.options.erb'],
   $forwarders  = [
     '8.8.8.8',
-    '8.8.4.4']) {
+    '8.8.4.4'],
+  ){
   # parameters validation
   if ($lastversion != true) and ($lastversion != false) {
     fail('lastversion must be true or false')
   }
   include stdlib
-  include bind::params, bind::install, bind::config, bind::service
+  include bind::params, bind::install, bind::service
+  
+  class {'bind::config':
+    bind_options_template => $bind_options_template,
+  }
 }
